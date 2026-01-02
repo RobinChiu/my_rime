@@ -244,6 +244,16 @@
     "license": "GPL-3.0-only"
   },
   {
+    "id": "liur",
+    "name": "嘸蝦米",
+    "group": "形碼",
+    "target": "RobinChiu/rime-liur",
+    "dependencies": ["luna_pinyin", "terra_pinyin", "bopomofo"],
+    "extended": true,
+    "hideComment": "emoji",
+    "license": "MIT"
+  },
+  {
     "id": "wugniu_lopha",
     "name": "上海吴语·老派",
     "group": "方言",

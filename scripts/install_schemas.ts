@@ -1,6 +1,6 @@
 import { platform } from 'os'
 import { spawnSync } from 'child_process'
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync, readdirSync, cpSync, rmSync } from 'fs'
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync, readdirSync, cpSync, rmSync, existsSync } from 'fs'
 import { cwd, chdir, exit } from 'process'
 import yaml from 'js-yaml'
 import {
@@ -47,7 +47,12 @@ async function install (recipe: Recipe, target?: string) {
 }
 
 function parseYaml (schemaId: string) {
-  const content = yaml.load(readFileSync(`${RIME_DIR}/build/${schemaId}.schema.yaml`, utf8)) as { [key: string]: any }
+  const schemaPath = `${RIME_DIR}/build/${schemaId}.schema.yaml`
+  if (!existsSync(schemaPath)) {
+    console.warn(`Warning: Schema file not found: ${schemaPath}`)
+    return false
+  }
+  const content = yaml.load(readFileSync(schemaPath, utf8)) as { [key: string]: any }
   schemaFiles[schemaId] = {}
   const { dict, prism } = getBinaryNames(content)
   // By default, dictionary equals to schemaId, and prism equals to dictionary (not schemaId, see luna_pinyin_fluency)
@@ -57,6 +62,7 @@ function parseYaml (schemaId: string) {
   if (prism !== dict) {
     schemaFiles[schemaId].prism = prism
   }
+  return true
 }
 
 function getPackageDir (target: string) {
