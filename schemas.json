@@ -118,6 +118,10 @@
       {
         "id": "bopomofo_express",
         "name": "注音·快打"
+      }, 
+      {
+        "id": "bopomofo_tw",
+        "name": "注音·臺灣正體"
       }
     ],
     "license": "LGPL-3.0-only"
@@ -155,6 +159,16 @@
     "extended": true,
     "hideComment": "emoji",
     "license": "GPL-3.0-only"
+  },
+  {
+    "id": "liur",
+    "name": "嘸蝦米",
+    "group": "形码",
+    "target": "RobinChiu/rime-liur",
+    "dependencies": ["luna_pinyin", "terra_pinyin", "bopomofo_tw"],
+    "extended": true,
+    "hideComment": "emoji",
+    "license": "MIT"
   },
   {
     "id": "stenotype",
